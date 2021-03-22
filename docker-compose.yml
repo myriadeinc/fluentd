@@ -1,0 +1,22 @@
+version: '3.8'
+services:
+  fluentd:
+    build: ./
+    environment: 
+      FLUENTD_ELASTIC_ID: /run/secrets/fluentd_elastic_id
+      FLUENTD_ELASTIC_AUTH: /run/secrets/fluentd_elastic_auth
+    volumes:
+      - ./config:/fluentd/etc
+    secrets:
+      - fluentd_elastic_id
+      - fluentd_elastic_auth
+    ports:
+      - "14224:14224"
+      - "14224:14224/udp"
+      - "24224:24224"
+      - "24224:24224/udp"
+secrets:
+  fluentd_elastic_id:
+    file: ./fluentd_elastic_id
+  fluentd_elastic_auth:
+    file: ./fluentd_elastic_auth
