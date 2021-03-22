@@ -1,2 +1,3 @@
 fluentd_elastic_id
 fluentd_elastic_auth
+.env
